@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>QRSMITH — Free QR Code Generator, No Sign-Up</title>
+<meta name="description" content="Generate high-resolution QR codes instantly in your browser. Free, no account, no watermark. Export as PNG, SVG, or print-ready PDF." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="noise-layer" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="mark" href="#top" aria-label="QRSMITH home">
+        <span class="mark-glyph" aria-hidden="true">
+          <span></span><span></span><span></span><span></span>
+        </span>
+        QRSMITH
+      </a>
+      <p class="topbar-note">No account. No watermark. No expiry.</p>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero wrap">
+      <p class="eyebrow">FREE&nbsp;·&nbsp;NO SIGN-UP&nbsp;·&nbsp;UPDATES LIVE</p>
+      <h1>Make a QR code<br>in one breath.</h1>
+      <p class="hero-sub">Paste a link, wifi string, or plain text. Watch it resolve on the right, in real time. Export it clean and walk away.</p>
+    </section>
+
+    <section class="studio wrap" aria-label="QR code generator">
+      <div class="studio-grid">
+
+        <!-- CONTROLS -->
+        <div class="panel controls-panel">
+          <label class="field-label" for="qr-text">Content</label>
+          <textarea
+            id="qr-text"
+            class="text-input"
+            placeholder="https://your-link.com&#10;or wifi details, plain text, anything"
+            rows="4"
+            autofocus
+          ></textarea>
+          <p class="hint" id="char-hint">0 characters</p>
+
+          <div class="controls-row">
+            <div class="control">
+              <label class="field-label" for="fg-color">Code color</label>
+              <div class="swatch-input">
+                <input type="color" id="fg-color" value="#12141C">
+                <span id="fg-color-text" class="swatch-value">#12141C</span>
+              </div>
+            </div>
+            <div class="control">
+              <label class="field-label" for="bg-color">Background</label>
+              <div class="swatch-input">
+                <input type="color" id="bg-color" value="#FFFFFF">
+                <span id="bg-color-text" class="swatch-value">#FFFFFF</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="controls-row">
+            <div class="control control-wide">
+              <label class="field-label" for="ec-level">Error correction</label>
+              <select id="ec-level" class="select-input">
+                <option value="L">Low — smaller pattern</option>
+                <option value="M" selected>Medium — balanced</option>
+                <option value="Q">Quartile — sturdier</option>
+                <option value="H">High — best for print/logos</option>
+              </select>
+            </div>
+          </div>
+
+          <p class="contrast-warning" id="contrast-warning" role="status" hidden>
+            ⚠ Low contrast between code and background — some scanners may struggle.
+          </p>
+        </div>
+
+        <!-- PREVIEW -->
+        <div class="panel preview-panel">
+          <div class="scan-target" id="scan-target">
+            <span class="corner corner-tl"></span>
+            <span class="corner corner-tr"></span>
+            <span class="corner corner-bl"></span>
+            <span class="corner corner-br"></span>
+            <div class="scan-line" id="scan-line" aria-hidden="true"></div>
+
+            <canvas id="qr-canvas" width="320" height="320"></canvas>
+
+            <div class="empty-state" id="empty-state">
+              <span class="empty-glyph" aria-hidden="true">
+                <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+              </span>
+              <p>Start typing to generate</p>
+            </div>
+          </div>
+          <p class="preview-caption" id="preview-caption">Ready when you are.</p>
+        </div>
+
+      </div>
+
+      <!-- DOWNLOADS -->
+      <div class="download-row" role="group" aria-label="Download QR code">
+        <button class="btn btn-primary" id="download-png" disabled>
+          <span class="btn-label">PNG</span>
+          <span class="btn-sub">High-res image</span>
+        </button>
+        <button class="btn btn-primary" id="download-svg" disabled>
+          <span class="btn-label">SVG</span>
+          <span class="btn-sub">Vector, scalable</span>
+        </button>
+        <button class="btn btn-primary" id="download-pdf" disabled>
+          <span class="btn-label">PDF</span>
+          <span class="btn-sub">Print-ready</span>
+        </button>
+      </div>
+
+      <!-- AD ZONE — directly below the utility, before anything else -->
+      <div class="ad-zone" aria-label="Advertisement">
+        <span class="ad-tag">Advertisement</span>
+        <div class="ad-slot" id="ad-slot">
+          <!--
+            Replace this placeholder with your real ad unit, e.g. Google AdSense:
+
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXX"
+                 data-ad-slot="XXXXXXXXXX"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+            The .ad-slot container has fixed min-heights per breakpoint
+            (see styles.css) so the ad reserves its space before it loads,
+            preventing layout shift.
+          -->
+          <span class="ad-placeholder-text">Ad space — 320×50 / 728×90 reserved</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="trust wrap">
+      <div class="trust-item">
+        <span class="trust-tag">01</span>
+        <p>Everything renders in your browser. Your content never touches a server.</p>
+      </div>
+      <div class="trust-item">
+        <span class="trust-tag">02</span>
+        <p>No accounts, no watermark, no rate limit. Generate as many as you need.</p>
+      </div>
+      <div class="trust-item">
+        <span class="trust-tag">03</span>
+        <p>Exports are full resolution — safe to print at business-card size or poster size.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <p>QRSMITH — built to be fast, free, and forgettable in the best way.</p>
+      <p class="footer-mono">v1.0</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.4/build/qrcode.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
