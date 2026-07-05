@@ -189,21 +189,58 @@ h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(2.2rem
 /* ============================================
    Footer & Trust
    ============================================ */
-.trust { 
-  padding: 56px 0 40px; /* Keep top/bottom, side padding comes from .wrap */
-  display: grid; 
-  grid-template-columns: 1fr; 
-  gap: 24px; 
+.trust {
+  padding: 60px 24px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
 }
-@media (min-width: 768px) { .trust { grid-template-columns: repeat(3, 1fr); } }
-.trust-item { 
-  display: flex; 
-  gap: 16px; 
-  background: white; 
-  padding: 24px; 
-  border-radius: var(--radius-md); 
-  border: 1px solid var(--color-border);
+
+@media (min-width: 800px) {
+  .trust {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.trust-item {
+  display: flex;
+  flex-direction: column; /* Stack icon on top of text */
   align-items: flex-start;
+  gap: 16px;
+  background: var(--color-surface);
+  padding: 24px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.trust-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px -10px rgba(0,0,0,0.05);
+}
+
+.trust-icon {
+  width: 42px;
+  height: 42px;
+  background: var(--color-bg);
+  color: var(--color-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+.trust-item p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--color-ink-soft);
+  line-height: 1.6;
+}
+
+.trust-item p strong {
+  color: var(--color-ink);
+  font-weight: 600;
 }
 .trust-tag { font-family: var(--font-mono); font-size: 0.72rem; color: var(--color-accent-ink); border: 1px solid var(--color-border); padding: 2px 6px; border-radius: 4px; }
 
