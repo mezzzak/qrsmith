@@ -85,7 +85,7 @@ h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(2.2rem
    Studio & Grid
    ============================================ */
 .studio { 
-  padding: 36px 0 0; /* Keep top padding, side padding comes from .wrap */
+  padding: 36px 0 20px; /* Changed 0 to nothing or handle via children */
   position: relative; 
   z-index: 1; 
 }
@@ -167,17 +167,48 @@ h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(2.2rem
 /* ============================================
    Buttons & Ads
    ============================================ */
-.download-row { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 20px; }
-@media (min-width: 600px) { .download-row { grid-template-columns: repeat(3, 1fr); } }
+.download-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-top: 24px;
+  padding: 0 20px; /* Add this line to create space from the phone edges */
+}
 
-.btn { display: flex; flex-direction: column; padding: 14px 18px; border-radius: var(--radius-md); border: none; cursor: pointer; transition: transform 0.1s; }
-.btn:active { transform: scale(0.98); }
+/* Remove the extra padding on Desktop because the container handles it there */
+@media (min-width: 600px) {
+  .download-row { 
+    grid-template-columns: repeat(3, 1fr); 
+    padding: 0; 
+  }
+}
+.btn { 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; /* Center the text inside the button */
+  justify-content: center;
+  padding: 18px; 
+  border-radius: var(--radius-md); 
+  border: none; 
+  cursor: pointer; 
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 0 rgba(0,0,0,0.1); /* Adds a tiny bit of depth */
+}
+
+.btn:active { 
+  transform: translateY(2px); /* Makes it feel like a real button click */
+  box-shadow: none;
+}
 .btn-primary { background: var(--color-ink); color: white; }
 .btn-label { font-family: var(--font-display); font-weight: 600; font-size: 1.05rem; }
 .btn-sub { font-size: 0.75rem; opacity: 0.7; }
 .btn:disabled { opacity: 0.3; cursor: not-allowed; }
 
-.ad-zone { margin-top: 28px; text-align: center; }
+.ad-zone {
+  margin-top: 28px;
+  padding: 0 20px; /* Add this to keep ads away from the edges */
+  text-align: center;
+}
 .ad-tag { font-family: var(--font-mono); font-size: 0.68rem; color: var(--color-ink-faint); text-transform: uppercase; }
 .ad-slot { 
   width: 100%; max-width: 728px; margin: 8px auto; height: 90px; 
