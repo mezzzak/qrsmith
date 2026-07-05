@@ -26,10 +26,13 @@
   --wrap-max: 1100px;
 }
 
+/* ============================================
+   Global
+   ============================================ */
 * { box-sizing: border-box; }
 html { 
-    scroll-behavior: smooth; 
-    -webkit-text-size-adjust: 100%; /* Prevents font scaling bugs on mobile */
+  scroll-behavior: smooth; 
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -39,16 +42,13 @@ body {
   font-family: var(--font-body);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  position: relative;
-  overflow-x: hidden; /* Prevent horizontal scroll */
+  overflow-x: hidden;
 }
 
-/* 1. CONTAINER FIX: Ensure it fills the screen perfectly on mobile */
 .wrap {
-  width: 100%;
   max-width: var(--wrap-max);
   margin: 0 auto;
-  padding: 0 16px; /* Better spacing for small screens */
+  padding: 0 20px;
 }
 
 .noise-layer {
@@ -61,124 +61,69 @@ body {
   background-size: 3px 3px;
 }
 
-a { color: inherit; }
-
 /* ============================================
    Topbar
    ============================================ */
-.topbar {
-  padding: 16px 0;
-  position: relative;
-  z-index: 1;
-}
-.topbar-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-.mark {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 1.05rem;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-}
-.mark-glyph {
-  display: inline-grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2px;
-  width: 16px;
-  height: 16px;
-}
+.topbar { padding: 22px 0; position: relative; z-index: 1; }
+.topbar-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.mark { font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; }
+.mark-glyph { display: inline-grid; grid-template-columns: repeat(2, 1fr); gap: 2px; width: 16px; height: 16px; }
 .mark-glyph span { background: var(--color-ink); border-radius: 1px; }
 .mark-glyph span:nth-child(2) { background: var(--color-accent); }
-.topbar-note {
-  margin: 0;
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  color: var(--color-ink-faint);
-}
+.topbar-note { font-family: var(--font-mono); font-size: 0.75rem; color: var(--color-ink-soft); margin: 0; }
 
 /* ============================================
    Hero
    ============================================ */
-.hero {
-  padding: 32px 0 12px;
-  position: relative;
-  z-index: 1;
-}
-h1 {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(2rem, 8vw, 3.6rem); /* Responsive font size */
-  line-height: 1.05;
-  margin: 0 0 16px;
-  max-width: 15ch;
-}
-.hero-sub {
-  font-size: 1rem;
-  color: var(--color-ink-soft);
-  max-width: 42ch;
-  margin: 0;
-}
+.hero { padding: 28px 24px 8px; position: relative; z-index: 1; }
+.eyebrow { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.12em; color: var(--color-accent-ink); margin: 0 0 14px; }
+h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(2.2rem, 5.4vw, 3.6rem); line-height: 1.03; letter-spacing: -0.01em; margin: 0 0 16px; }
+.hero-sub { font-size: 1.05rem; color: var(--color-ink-soft); max-width: 46ch; margin: 0; }
 
 /* ============================================
-   Studio (Tool Layout)
+   Studio & Grid
    ============================================ */
-.studio {
-  padding: 24px 0;
-  position: relative;
-  z-index: 1;
-}
-
-/* 2. GRID FIX: One column for mobile, two for desktop */
-.studio-grid {
-  display: grid;
-  grid-template-columns: 1fr; 
-  gap: 20px;
-}
+.studio { padding: 36px 0 0; position: relative; z-index: 1; }
+.studio-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
 
 @media (min-width: 900px) {
-  .studio-grid {
-    grid-template-columns: 1.1fr 0.9fr;
-  }
+  .studio-grid { grid-template-columns: 1.1fr 0.9fr; }
 }
 
 .panel {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
-  padding: 24px;
+  padding: 26px;
 }
+
+.field-label { display: block; font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; color: var(--color-ink-soft); margin-bottom: 8px; }
 
 .text-input {
   width: 100%;
-  min-height: 100px;
+  min-height: 96px;
   padding: 14px;
-  font-family: var(--font-body);
-  font-size: 16px; /* CRITICAL: Prevents iOS auto-zoom */
-  color: var(--color-ink);
-  background: var(--color-bg);
+  font-size: 16px; /* Fix mobile zoom */
   border: 1.5px solid var(--color-border);
   border-radius: var(--radius-md);
-  outline: none;
+  background: var(--color-bg);
+  font-family: inherit;
 }
-.text-input:focus { border-color: var(--color-accent); }
+
+.controls-row { display: flex; gap: 16px; margin-top: 22px; flex-wrap: wrap; }
+.control { flex: 1 1 140px; }
+.control-wide { flex: 1 1 100%; }
+
+.swatch-input { display: flex; align-items: center; gap: 10px; border: 1.5px solid var(--color-border); border-radius: var(--radius-sm); padding: 8px 12px; background: var(--color-bg); }
+.swatch-input input { width: 28px; height: 28px; border: none; cursor: pointer; }
+.swatch-value { font-family: var(--font-mono); font-size: 0.8rem; }
+
+.select-input { width: 100%; padding: 10px; border-radius: var(--radius-sm); border: 1.5px solid var(--color-border); background: var(--color-bg); }
 
 /* ============================================
-   Preview / QR Code
+   Preview Area (THE SCANNER)
    ============================================ */
-.preview-panel {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
+.preview-panel { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; }
 .scan-target {
   position: relative;
   width: 100%;
@@ -192,71 +137,57 @@ h1 {
   overflow: hidden;
 }
 
-#qr-canvas {
-  width: 85% !important;
-  height: 85% !important;
+#qr-canvas { width: 88% !important; height: 88% !important; border-radius: 4px; }
+
+.corner { position: absolute; width: 22px; height: 22px; border: 3px solid var(--color-signal); z-index: 2; }
+.corner-tl { top: 10px; left: 10px; border-right: none; border-bottom: none; border-radius: 6px 0 0 0; }
+.corner-tr { top: 10px; right: 10px; border-left: none; border-bottom: none; border-radius: 0 6px 0 0; }
+.corner-bl { bottom: 10px; left: 10px; border-right: none; border-top: none; border-radius: 0 0 0 6px; }
+.corner-br { bottom: 10px; right: 10px; border-left: none; border-top: none; border-radius: 0 0 6px 0; }
+
+.scan-line {
+  position: absolute; left: 8%; right: 8%; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-signal), transparent);
+  top: 6%; opacity: 0; z-index: 3; pointer-events: none;
 }
+.scan-line.is-active { animation: sweep 0.7s ease-out; }
+@keyframes sweep { 0% { top: 6%; opacity: 0; } 15% { opacity: 1; } 100% { top: 92%; opacity: 0; } }
+
+.empty-state { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--color-ink-faint); }
+.empty-glyph { display: grid; grid-template-columns: repeat(3, 10px); gap: 3px; margin-bottom: 10px; }
+.empty-glyph span { width: 10px; height: 10px; background: var(--color-border); border-radius: 1px; }
+
+.preview-caption { font-family: var(--font-mono); font-size: 0.75rem; color: var(--color-ink-faint); text-align: center; }
 
 /* ============================================
-   Downloads (Buttons)
+   Buttons & Ads
    ============================================ */
-.download-row {
-  display: grid;
-  grid-template-columns: 1fr; /* Stack on mobile */
-  gap: 12px;
-  margin-top: 24px;
-}
+.download-row { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 20px; }
+@media (min-width: 600px) { .download-row { grid-template-columns: repeat(3, 1fr); } }
 
-@media (min-width: 600px) {
-  .download-row { grid-template-columns: repeat(3, 1fr); }
-}
-
-.btn {
-  padding: 14px;
-  border-radius: var(--radius-md);
-  border: none;
-  cursor: pointer;
-  text-align: center;
-}
+.btn { display: flex; flex-direction: column; padding: 14px 18px; border-radius: var(--radius-md); border: none; cursor: pointer; transition: transform 0.1s; }
+.btn:active { transform: scale(0.98); }
 .btn-primary { background: var(--color-ink); color: white; }
-.btn:disabled { opacity: 0.3; }
+.btn-label { font-family: var(--font-display); font-weight: 600; font-size: 1.05rem; }
+.btn-sub { font-size: 0.75rem; opacity: 0.7; }
+.btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+.ad-zone { margin-top: 28px; text-align: center; }
+.ad-tag { font-family: var(--font-mono); font-size: 0.68rem; color: var(--color-ink-faint); text-transform: uppercase; }
+.ad-slot { 
+  width: 100%; max-width: 728px; margin: 8px auto; height: 90px; 
+  background: var(--color-ad-bg); border: 1px dashed var(--color-border); 
+  display: flex; align-items: center; justify-content: center; font-size: 0.7rem; color: var(--color-ink-faint);
+}
+@media (max-width: 768px) { .ad-slot { height: 50px; } }
 
 /* ============================================
-   Ad Zone
+   Footer & Trust
    ============================================ */
-.ad-slot {
-  width: 100%;
-  margin-top: 30px;
-  background: var(--color-ad-bg);
-  border: 1px dashed var(--color-border);
-  height: 90px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+.trust { padding: 56px 0 40px; display: grid; grid-template-columns: 1fr; gap: 24px; }
+@media (min-width: 768px) { .trust { grid-template-columns: repeat(3, 1fr); } }
+.trust-item { display: flex; gap: 14px; }
+.trust-tag { font-family: var(--font-mono); font-size: 0.72rem; color: var(--color-accent-ink); border: 1px solid var(--color-border); padding: 2px 6px; border-radius: 4px; }
 
-@media (max-width: 768px) {
-  .ad-slot { height: 50px; }
-}
-
-/* ============================================
-   Trust / SEO Section
-   ============================================ */
-.trust {
-  padding: 40px 0;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 24px;
-}
-
-@media (min-width: 768px) {
-  .trust { grid-template-columns: repeat(3, 1fr); }
-}
-
-.site-footer {
-  padding: 30px 0;
-  border-top: 1px solid var(--color-border);
-  text-align: center;
-  font-size: 0.85rem;
-  color: var(--color-ink-faint);
-}
+.site-footer { border-top: 1px solid var(--color-border); padding: 22px 0 40px; }
+.footer-inner { display: flex; justify-content: space-between; flex-wrap: wrap; font-size: 0.82rem; color: var(--color-ink-faint); }
