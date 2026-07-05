@@ -39,10 +39,13 @@ body {
   position: relative;
 }
 
+/* 1. Ensure the main container never exceeds the phone screen width */
 .wrap {
+  width: 100%;
   max-width: var(--wrap-max);
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 20px; /* Reduced padding for mobile */
+  overflow-x: hidden; /* Prevents side-scrolling */
 }
 
 /* subtle paper texture, ties the "print" theme together without being loud */
@@ -145,11 +148,11 @@ h1 {
   position: relative;
   z-index: 1;
 }
+/* 2. Make the grid collapse earlier for phones */
 .studio-grid {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
+  grid-template-columns: 1fr; /* Default to 1 column for mobile */
   gap: 20px;
-  align-items: stretch;
 }
 @media (max-width: 860px) {
   .studio-grid { grid-template-columns: 1fr; }
