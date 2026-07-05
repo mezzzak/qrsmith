@@ -48,7 +48,8 @@ body {
 .wrap {
   max-width: var(--wrap-max);
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 24px; /* Increased side padding for better spacing */
+  width: 100%;
 }
 
 .noise-layer {
@@ -83,7 +84,11 @@ h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(2.2rem
 /* ============================================
    Studio & Grid
    ============================================ */
-.studio { padding: 36px 0 0; position: relative; z-index: 1; }
+.studio { 
+  padding: 36px 0 0; /* Keep top padding, side padding comes from .wrap */
+  position: relative; 
+  z-index: 1; 
+}
 .studio-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
 
 @media (min-width: 900px) {
@@ -184,7 +189,12 @@ h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(2.2rem
 /* ============================================
    Footer & Trust
    ============================================ */
-.trust { padding: 56px 0 40px; display: grid; grid-template-columns: 1fr; gap: 24px; }
+.trust { 
+  padding: 56px 0 40px; /* Keep top/bottom, side padding comes from .wrap */
+  display: grid; 
+  grid-template-columns: 1fr; 
+  gap: 24px; 
+}
 @media (min-width: 768px) { .trust { grid-template-columns: repeat(3, 1fr); } }
 .trust-item { display: flex; gap: 14px; }
 .trust-tag { font-family: var(--font-mono); font-size: 0.72rem; color: var(--color-accent-ink); border: 1px solid var(--color-border); padding: 2px 6px; border-radius: 4px; }
