@@ -21,12 +21,55 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
-    .policy-content { padding: 60px 0; max-width: 800px; margin: 0 auto; position: relative; z-index: 1; }
-    .policy-content h1 { font-family: var(--font-display); font-weight: 700; font-size: 3rem; margin-bottom: 20px; letter-spacing: -0.02em; }
-    .policy-content h2 { font-family: var(--font-display); margin-top: 40px; font-weight: 700; color: var(--color-ink); }
-    .policy-content p, .policy-content li { color: var(--color-ink-soft); line-height: 1.8; margin-bottom: 16px; font-family: var(--font-body); }
-    .back-home { display: inline-block; margin-bottom: 30px; color: var(--color-accent); font-weight: 600; text-decoration: none; font-family: var(--font-mono); font-size: 0.8rem; }
+    /* FIX: Added 24px horizontal padding for mobile */
+    .policy-content { 
+        padding: 40px 24px 80px; 
+        max-width: 800px; 
+        margin: 0 auto; 
+        position: relative; 
+        z-index: 1; 
+    }
+    
+    .policy-content h1 { 
+        font-family: var(--font-display); 
+        font-weight: 700; 
+        font-size: clamp(2.2rem, 8vw, 3.5rem); 
+        margin-bottom: 20px; 
+        letter-spacing: -0.02em; 
+    }
+    
+    .policy-content h2 { 
+        font-family: var(--font-display); 
+        margin-top: 40px; 
+        font-weight: 700; 
+        color: var(--color-ink); 
+    }
+    
+    .policy-content p, .policy-content li { 
+        color: var(--color-ink-soft); 
+        line-height: 1.8; 
+        margin-bottom: 16px; 
+        font-family: var(--font-body); 
+        font-size: 1.05rem;
+    }
+    
+    .back-home { 
+        display: inline-block; 
+        margin-bottom: 30px; 
+        color: var(--color-accent); 
+        font-weight: 600; 
+        text-decoration: none; 
+        font-family: var(--font-mono); 
+        font-size: 0.8rem; 
+    }
+    
     .back-home:hover { text-decoration: underline; }
+
+    /* Ensure mobile text doesn't feel too big */
+    @media (max-width: 600px) {
+        .policy-content { padding: 30px 20px 60px; }
+        .policy-content p { font-size: 1rem; }
+    }
 </style>
 </head>
 <body>
